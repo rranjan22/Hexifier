@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import colorNames from "colornames";
+import Box from "./Box";
+import Input from "./Input";
+import { useState } from "react";
 
 function App() {
+  const [colorValue, setcolorValue] = useState("");
+  const [hexValue,   setHexValue]   = useState("");
+
+  const handleColor = (e) => {
+    setcolorValue(e.target.value);
+    setHexValue(colorNames(e.target.value) || "")
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Box 
+        colorValue={colorValue} 
+        hexValue={hexValue}
+      />
+      <Input 
+        handleColor={handleColor}
+      />
     </div>
   );
 }
